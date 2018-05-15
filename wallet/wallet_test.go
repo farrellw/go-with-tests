@@ -6,7 +6,7 @@ import (
 
 func TestWallet(t *testing.T) {
 
-	compareBitcoin := func(t *testing.T, w Wallet, want Bitcoin){
+	compareBalance := func(t *testing.T, w Wallet, want Bitcoin){
 		t.Helper()
 		got := w.Balance()
 
@@ -21,7 +21,7 @@ func TestWallet(t *testing.T) {
 		wallet.Deposit(Bitcoin(10))
 		want := Bitcoin(10)
 
-		compareBitcoin(t, wallet, want)
+		compareBalance(t, wallet, want)
 	})
 	t.Run("Withdraw", func(t *testing.T){
 		wallet := Wallet{balance: Bitcoin(30)}
@@ -29,6 +29,6 @@ func TestWallet(t *testing.T) {
 		wallet.Withdraw(Bitcoin(18))
 		want := Bitcoin(12)
 
-		compareBitcoin(t, wallet, want)
+		compareBalance(t, wallet, want)
 	})
 }
